@@ -46,7 +46,7 @@ if (agol_user.role in builtin_roles):
     sso_user.update_role(role=agol_user.role)
     print(agol_user.role, sso_user.role)
 else:
-   	role = gis.users.roles.get_role(agol_user.roleId)
+    role = gis.users.roles.get_role(agol_user.roleId)
     sso_user.update_role(role=role)
     print(agol_user.roleId, sso_user.roleId, role.name)
 
