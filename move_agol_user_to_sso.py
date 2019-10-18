@@ -22,7 +22,7 @@ try:
     agol_user = gis.users.get(agol_username)
     sso_user = gis.users.get(sso_username)
 except exceptions.Exception as e:
-    print("Unexpected error: {}".format(e))
+    print(f'Unexpected error: {e}')
     raise e
 
 ################
@@ -144,7 +144,7 @@ if agol_favs:
 # Credits #
 if (agol_user.assignedCredits > 100):
     print("Old User's Credits".center(40,'-'))
-    print('Old user account had {} credits'.format(agol_user.assignedCredits))
+    print(f'Old user account had {agol_user.assignedCredits} credits')
 
 # Licenses #
 # Not yet available in AGOL #
