@@ -42,9 +42,9 @@ sso_user.update(access=agol_user.access, preferred_view=agol_user.preferredView,
 # but for custom roles you have to get the role object from the RoleManager static class (via gis.users.roles).
 # You can't just use the second method for all of them because the built-in roles don't exist in the RoleManager.
 builtin_roles = ['org_user', 'org_publisher', 'org_admin', 'viewer', 'view_only', 'viewplusedit']
-if (agol_user.role in builtin_roles):
-    sso_user.update_role(role=agol_user.role)
-    print(agol_user.role, sso_user.role)
+if (agol_user.roleId in builtin_roles):
+    sso_user.update_role(role=agol_user.roleId)
+    print(agol_user.roleId, sso_user.roleId)
 else:
     role = gis.users.roles.get_role(agol_user.roleId)
     sso_user.update_role(role=role)
