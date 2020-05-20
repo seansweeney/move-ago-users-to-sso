@@ -32,9 +32,14 @@ print('Updating profile'.center(40,'-'))
 # Even though the documentation says that you can pass a URL to the thumbnail input on the update method, it doesn't seem to work to pass the agol_user.get_thumbnail_link() result.
 # Instead, I'm downloading the thumbnail and uploading it to the new account, which seems to work
 agol_thumbnail_download = agol_user.download_thumbnail(os.getenv('TEMP'))
-sso_user.update(access=agol_user.access, preferred_view=agol_user.preferredView, description=agol_user.description, tags=agol_user.tags, 
-                thumbnail=agol_thumbnail_download, fullname=agol_user.fullName, culture=agol_user.culture, region=agol_user.region, 
-                first_name=agol_user.firstName, last_name=agol_user.lastName)
+try:
+    sso_user.update(access=agol_user.access, preferred_view=agol_user.preferredView, description=agol_user.description, tags=agol_user.tags, 
+                    thumbnail=agol_thumbnail_download, fullname=agol_user.fullName, culture=agol_user.culture, region=agol_user.region, 
+                    first_name=agol_user.firstName, last_name=agol_user.lastName)
+except AttributeError:
+    # Some old profiles don't seem to have firstName and lastName for some reason.  This was the only AttributError failure mode I encountered.  YMMV.
+    sso_user.update(access=agol_user.access, preferred_view=agol_user.preferredView, description=agol_user.description, tags=agol_user.tags, 
+                    thumbnail=agol_thumbnail_download, fullname=agol_user.fullName, culture=agol_user.culture, region=agol_user.region)
 
 # Properties with separate methods # 
 # Role #
