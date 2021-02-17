@@ -155,3 +155,8 @@ if (agol_user.assignedCredits > 100):
 # Not yet available in AGOL #
 # print("Old User's Licenses".center(40,'-'))
 # print(agol_user.provisions)
+
+#####################
+# Disable old account
+#####################
+agol_user.disable()
