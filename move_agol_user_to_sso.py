@@ -68,12 +68,15 @@ if (agol_user.esri_access == 'both'):
 #########
 print('Updating groups'.center(40,'-'))
 for group in agol_user.groups:
+    try:
     if (group.owner == agol_username):
         print('Changing ownership: ' + group.title)
         group.reassign_to(sso_username)
     else:
         print('Joining: ' + group.title)
         group.add_users([sso_username])
+    except Exception as e:
+        print(e)
 
 ##########
 # Content
